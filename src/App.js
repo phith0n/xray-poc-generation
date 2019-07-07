@@ -1,21 +1,32 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Form, Input, Button } from 'antd';
+import Rule from './Rule';
 
 const { Header, Content, Footer } = Layout;
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       poc: {
         name: "",
         rules: [],
         detail: {},
       }
-    }
+    };
+    this.updateRule = this.updateRule.bind(this)
+  }
+
+  updateRule(data) {
+    //console.log(data)
   }
 
   render() {
+    const formItemLayout = {
+      labelCol: { span: 2 },
+      wrapperCol: { span: 22 },
+    };
+
     return (
       <Layout className="layout">
         <Header>
@@ -37,8 +48,8 @@ class App extends React.Component {
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
           <Row gutter={16} type="flex">
             <Col span={12} >
-              <Form>
-                <Form.Item label="POC名">
+              <Form layout={"horizontal"} labelAlign="left">
+                <Form.Item label="POC名" {...formItemLayout}>
                   <Input 
                     placeholder="由数字、字母、短横线组成" 
                     type="text" 
@@ -46,9 +57,7 @@ class App extends React.Component {
                     onChange={e => this.setState({poc: {name: e.target.value}})} 
                   />
                 </Form.Item>
-                <Form.Item label="Field B">
-                  <Input placeholder="input placeholder" />
-                </Form.Item>
+                <Rule updateRule={this.updateRule} />
                 <Form.Item>
                   <Button type="primary" size="large">Submit</Button>
                 </Form.Item>

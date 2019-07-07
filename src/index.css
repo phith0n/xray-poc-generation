@@ -9,3 +9,28 @@
   margin: 16px 24px 16px 0;
   float: left;
 }
+
+.rule-card .rule-item {
+  margin-bottom: 0px;
+}
+
+.dynamic-delete-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  transition: all 0.3s;
+  margin-left: 10px;
+}
+
+textarea.ant-input {
+  resize: none;
+}
+
+.color-grey {
+  color: #999;
+}
+
+.color-red {
+  color: red;
+}
