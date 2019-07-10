@@ -1,69 +1,76 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {Card, Form, Input, Select, Switch} from "antd";
-import Header from "./Header"
+import HeaderComponent from "./Header"
+import Header from "./model/header"
+import { findObjectByIndex } from "./model/helper";
 
-let headerIndex = 1;
 
-class Rule extends React.Component {
+export default class RuleComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      method: "GET",
-      path: "",
-      headers: [
-        [headerIndex, "", ""],
-      ],
-      body: "",
-      followRedirects: true,
-      expression: "",
-      search: "",
+      ...props.initRule
     };
     this.changeInputValue = this.changeInputValue.bind(this);
     this.changeInputValueByName = this.changeInputValueByName.bind(this);
     this.addHeader = this.addHeader.bind(this);
     this.updateHeader = this.updateHeader.bind(this);
     this.deleteHeader = this.deleteHeader.bind(this);
-
-    this.updateRule = props.updateRule
   }
 
   changeInputValue(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
-    this.updateRule(this.state)
+    this.props.updateHandler(this.state)
   }
 
   changeInputValueByName(name, value) {
     this.setState({
       [name]: value
     });
-    this.updateRule(this.state)
+    this.props.updateHandler(this.state);
   }
 
   addHeader() {
-    headerIndex++;
     let headers = this.state.headers;
-    headers.push([headerIndex, "", ""]);
-    this.setState({headers: headers})
+    headers.push(new Header());
+    this.setState({headers: headers});
   }
 
-  updateHeader(key, hKey, hValue) {
+  updateHeader(index, key, value) {
     let headers = this.state.headers;
-    headers[key][1] = hKey;
-    headers[key][2] = hValue;
-    this.setState({headers: headers})
+    const i = findObjectByIndex(headers, index);
+    if (i >= 0) {
+      headers[i].key = key;
+      headers[i].value = value;
+      this.setState({headers: headers});
+    }
   }
 
-  deleteHeader(key) {
+  deleteHeader(index) {
     let headers = this.state.headers;
-    headers.splice(key, 1);
-    this.setState({headers: headers})
+    const i = findObjectByIndex(headers, index);
+    if (i >= 0) {
+      headers.splice(i, 1);
+      this.setState({headers: headers});
+    }
   }
 
   render() {
     return (
-      <Card title="规则（Rule）" size="small" className="rule-card" style={{marginBottom: "24px"}} extra={<a href="#">增加一个Rule</a>}>
+      <Card
+        title="规则（Rule）"
+        size="small"
+        className="rule-card"
+        style={{marginBottom: "24px"}}
+        extra={(
+          <Fragment>
+            <a href="#" style={{paddingRight: 5}}>删除Rule</a>
+            <a onClick={this.props.addHandler}>增加一个Rule</a>
+          </Fragment>
+        )}
+      >
         <Form.Item label="请求方法" className="rule-item">
           <Select defaultValue={this.state.method} style={{ width: 120 }} name="method" onChange={value => this.changeInputValueByName("method", value)}>
             {["HEAD", "GET", "POST", "PUT", "PATCH", "DELETE", "CONNECT", "OPTIONS", "TRACE"].map((value, index) =>
@@ -76,11 +83,9 @@ class Rule extends React.Component {
         </Form.Item>
         <Form.Item label="请求头" className="rule-item">
           {this.state.headers.map((header, index) =>
-            <Header
-              key={header[0]}
-              hKey={header[1]}
-              hValue={header[2]}
-              index={index}
+            <HeaderComponent
+              key={header.index}
+              initHeader={header}
               showAddButton={index === this.state.headers.length - 1}
               showDeleteButton={this.state.headers.length > 1}
               addHandler={this.addHeader}
@@ -105,5 +110,3 @@ class Rule extends React.Component {
     )
   }
 }
-
-export default Rule;

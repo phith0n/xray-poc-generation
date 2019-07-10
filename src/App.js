@@ -1,24 +1,55 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Form, Input, Button } from 'antd';
-import Rule from './Rule';
+import RuleComponent from './Rule';
+import Rule from './model/rule'
+import { findObjectByIndex } from "./model/helper";
 
 const { Header, Content, Footer } = Layout;
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       poc: {
         name: "",
-        rules: [],
+        rules: [new Rule()],
         detail: {},
       }
     };
-    this.updateRule = this.updateRule.bind(this)
+    this.updateRule = this.updateRule.bind(this);
+    this.generatePOC = this.generatePOC.bind(this);
+    this.addRule = this.addRule.bind(this);
   }
 
-  updateRule(data) {
-    //console.log(data)
+  updateRule(rule) {
+    let rules = this.state.poc.rules;
+    const i = findObjectByIndex(rules, rule.index);
+    if (i >= 0) {
+      rules[i] = rule;
+      this.setState({
+        poc: {
+          name: this.state.poc.name,
+          rules,
+          detail: this.state.poc.detail
+        }
+      })
+    }
+  }
+
+  generatePOC() {
+    console.log(this.state.poc);
+  }
+
+  addRule() {
+    let rules = this.state.poc.rules;
+    rules.push(new Rule());
+    this.setState({
+      poc: {
+        name: this.state.poc.name,
+        rules,
+        detail: this.state.poc.detail
+      }
+    })
   }
 
   render() {
@@ -57,9 +88,16 @@ class App extends React.Component {
                     onChange={e => this.setState({poc: {name: e.target.value}})} 
                   />
                 </Form.Item>
-                <Rule updateRule={this.updateRule} />
+                {this.state.poc.rules.map((rule, index) =>
+                  <RuleComponent
+                    key={rule.index}
+                    initRule={rule}
+                    updateHandler={this.updateRule}
+                    addHandler={this.addRule}
+                  />
+                )}
                 <Form.Item>
-                  <Button type="primary" size="large">Submit</Button>
+                  <Button type="primary" size="default" onClick={this.generatePOC}>生成</Button>
                 </Form.Item>
               </Form>
             </Col>
@@ -74,5 +112,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;
