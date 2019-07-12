@@ -4,17 +4,11 @@ import {Icon, Input} from "antd";
 export default class HeaderComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ...props.initHeader
-    };
     this.changeInputValue = this.changeInputValue.bind(this);
   }
 
   changeInputValue(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-    this.props.updateHandler(this.state.index, this.state.key, this.state.value);
+    this.props.updateHandler(this.props.header.index, e.target.name, e.target.value);
   }
 
   render() {
@@ -24,14 +18,14 @@ export default class HeaderComponent extends React.Component {
           <Input
             style={{ width: '20%' }}
             name="key"
-            value={this.state.key}
+            value={this.props.header.key}
             onChange={this.changeInputValue}
             placeholder="User-Agent"
           />
           <Input
             style={{ width: '80%' }}
             name="value"
-            value={this.state.value}
+            value={this.props.header.value}
             onChange={this.changeInputValue}
             placeholder="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36"
           />
@@ -41,7 +35,7 @@ export default class HeaderComponent extends React.Component {
             className="dynamic-delete-button color-red"
             type="minus-circle-o"
             style={{"color": "#ff6868"}}
-            onClick={e => this.props.deleteHandler(this.state.index)}
+            onClick={e => this.props.deleteHandler(this.props.header.index)}
           />
         ) : null}
         {this.props.showAddButton ? (

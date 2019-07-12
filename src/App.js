@@ -1,4 +1,5 @@
 import React from 'react';
+import update from 'immutability-helper';
 import { Layout, Menu, Breadcrumb, Row, Col, Form, Input, Button } from 'antd';
 import RuleComponent from './Rule';
 import Rule from './model/rule'
@@ -10,46 +11,39 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      poc: {
-        name: "",
-        rules: [new Rule()],
-        detail: {},
-      }
+      name: "",
+      rules: [new Rule()],
+      detail: {},
     };
     this.updateRule = this.updateRule.bind(this);
     this.generatePOC = this.generatePOC.bind(this);
     this.addRule = this.addRule.bind(this);
+    this.deleteRule = this.deleteRule.bind(this);
   }
 
-  updateRule(rule) {
-    let rules = this.state.poc.rules;
-    const i = findObjectByIndex(rules, rule.index);
+  updateRule(index, key, value) {
+    const i = findObjectByIndex(this.state.rules, index);
     if (i >= 0) {
-      rules[i] = rule;
-      this.setState({
-        poc: {
-          name: this.state.poc.name,
-          rules,
-          detail: this.state.poc.detail
-        }
-      })
+      let rules = update(this.state.rules, {[i]: {[key]: {$set: value}}});
+      this.setState({rules});
+    }
+  }
+
+  deleteRule(index) {
+    const i = findObjectByIndex(this.state.rules, index);
+    if (i >= 0) {
+      let rules = update(this.state.rules, {$splice: [[i, 1]]});
+      this.setState({rules});
     }
   }
 
   generatePOC() {
-    console.log(this.state.poc);
+    console.log(this.state);
   }
 
   addRule() {
-    let rules = this.state.poc.rules;
-    rules.push(new Rule());
-    this.setState({
-      poc: {
-        name: this.state.poc.name,
-        rules,
-        detail: this.state.poc.detail
-      }
-    })
+    let rules = update(this.state.rules, {$push: [new Rule()]});
+    this.setState({rules})
   }
 
   render() {
@@ -84,16 +78,17 @@ export default class App extends React.Component {
                   <Input 
                     placeholder="由数字、字母、短横线组成" 
                     type="text" 
-                    value={this.state.poc.name} 
-                    onChange={e => this.setState({poc: {name: e.target.value}})} 
+                    value={this.state.name}
+                    onChange={e => this.setState({name: e.target.value})}
                   />
                 </Form.Item>
-                {this.state.poc.rules.map((rule, index) =>
+                {this.state.rules.map((rule, index) =>
                   <RuleComponent
                     key={rule.index}
-                    initRule={rule}
+                    rule={rule}
                     updateHandler={this.updateRule}
                     addHandler={this.addRule}
+                    deleteHandler={this.deleteRule}
                   />
                 )}
                 <Form.Item>
