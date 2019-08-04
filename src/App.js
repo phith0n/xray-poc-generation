@@ -111,7 +111,7 @@ export default class App extends React.Component {
     return (
       <Layout className="layout">
         <Header>
-          <div className="logo" >🧬 XRay POC Generation</div>
+          <div className="logo" ><span role="img" aria-label="dna" aria-hidden="true">🧬</span> XRay POC Generation</div>
           <Menu
             theme="dark"
             mode="horizontal"
