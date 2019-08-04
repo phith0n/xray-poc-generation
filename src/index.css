@@ -1,13 +1,47 @@
+/* rubik-regular */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//lib.baomitu.com/fonts/rubik/rubik-regular.eot'); /* IE9 Compat Modes */
+  src: local('Rubik'), local('Rubik-Normal'),
+  url('//lib.baomitu.com/fonts/rubik/rubik-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//lib.baomitu.com/fonts/rubik/rubik-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('//lib.baomitu.com/fonts/rubik/rubik-regular.woff') format('woff'), /* Modern Browsers */
+  url('//lib.baomitu.com/fonts/rubik/rubik-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('//lib.baomitu.com/fonts/rubik/rubik-regular.svg#Rubik') format('svg'); /* Legacy iOS */
+}
+
+/* work-sans-regular */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//lib.baomitu.com/fonts/work-sans/work-sans-regular.eot'); /* IE9 Compat Modes */
+  src: local('Work Sans'), local('WorkSans-Normal'),
+  url('//lib.baomitu.com/fonts/work-sans/work-sans-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//lib.baomitu.com/fonts/work-sans/work-sans-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('//lib.baomitu.com/fonts/work-sans/work-sans-regular.woff') format('woff'), /* Modern Browsers */
+  url('//lib.baomitu.com/fonts/work-sans/work-sans-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('//lib.baomitu.com/fonts/work-sans/work-sans-regular.svg#WorkSans') format('svg'); /* Legacy iOS */
+}
+
+
 .App {
   text-align: center;
 }
 
 .logo {
-  width: 120px;
   height: 31px;
+  padding: 0 10px;
+  line-height: 31px;
+  /*font-weight: bold;*/
+  font-size: 16px;
+  color: #ccc;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px 24px 16px 0;
   float: left;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .rule-card .rule-item {
@@ -33,4 +67,12 @@ textarea.ant-input {
 
 .color-red {
   color: red;
+}
+
+textarea#poc-detail {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+.br {
+  margin-right: 8px;
 }

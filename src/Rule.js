@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import update from 'immutability-helper';
-import {Card, Form, Input, Select, Switch, Button, Radio} from "antd";
+import {Card, Form, Input, Select, Switch, Button} from "antd";
 import HeaderComponent from "./Header";
 import Header from "./model/header";
 import { findObjectByIndex } from "./model/helper";
@@ -9,6 +9,16 @@ import { findObjectByIndex } from "./model/helper";
 export default class RuleComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      pathHelp: {
+        status: "success",
+        help: ""
+      },
+      headersHelp: {
+        status: "success",
+        help: ""
+      }
+    };
     this.changeInputValue = this.changeInputValue.bind(this);
     this.changeInputValueByName = this.changeInputValueByName.bind(this);
     this.addHeader = this.addHeader.bind(this);
@@ -16,11 +26,35 @@ export default class RuleComponent extends React.Component {
     this.deleteHeader = this.deleteHeader.bind(this);
   }
 
+  checkRule(name, value) {
+    if (name === "path") {
+      let pathHelp;
+      if (!value.startsWith("/")) {
+        pathHelp = update(this.state.pathHelp, {$set: {status: "error", help: "path需要以/开头"}});
+      } else {
+        pathHelp = update(this.state.pathHelp, {$set: {status: "success", help: ""}});
+      }
+
+      this.setState({pathHelp});
+    } else if (name === "headers") {
+      let headersHelp = update(this.state.headersHelp, {$set: {status: "success", help: ""}});
+      for (let header of value) {
+        if (!header.key) {
+          headersHelp = update(this.state.headersHelp, {$set: {status: "error", help: "HTTP头Key不能为空"}});
+        }
+      }
+
+      this.setState({headersHelp});
+    }
+  }
+
   changeInputValue(e) {
+    this.checkRule(e.target.name, e.target.value);
     this.props.updateHandler(this.props.rule.index, e.target.name, e.target.value);
   }
 
   changeInputValueByName(name, value) {
+    this.checkRule(name, value);
     this.props.updateHandler(this.props.rule.index, name, value);
   }
 
@@ -54,7 +88,7 @@ export default class RuleComponent extends React.Component {
         style={{marginBottom: "24px"}}
         extra={(
           <Button.Group size="small">
-            <Button onClick={e => this.props.deleteHandler(this.props.rule.index)}>删除Rule</Button>
+            <Button onClick={e => this.props.deleteHandler(this.props.rule.index)} disabled={this.props.ruleSize <= 1}>删除Rule</Button>
             <Button onClick={this.props.addHandler}>增加一个Rule</Button>
           </Button.Group>
         )}
@@ -66,10 +100,16 @@ export default class RuleComponent extends React.Component {
             )}
           </Select>
         </Form.Item>
-        <Form.Item label="请求路径" className="rule-item">
-          <Input placeholder="/path/to/request" type="text" name="path" value={this.props.rule.path} onChange={this.changeInputValue} />
+        <Form.Item label="请求路径" className="rule-item" validateStatus={this.state.pathHelp.status} help={this.state.pathHelp.help}>
+          <Input
+            placeholder="/path/to/request"
+            type="text"
+            name="path"
+            value={this.props.rule.path}
+            onChange={this.changeInputValue}
+          />
         </Form.Item>
-        <Form.Item label="请求头" className="rule-item">
+        <Form.Item label="请求头" className="rule-item" validateStatus={this.state.headersHelp.status} help={this.state.headersHelp.help}>
           {this.props.rule.headers.map((header, index) =>
             <HeaderComponent
               key={header.index}

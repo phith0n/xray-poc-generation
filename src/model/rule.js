@@ -9,7 +9,7 @@ export default class RuleObject {
     this.path = "";
     this.headers = [new Header()];
     this.body = "";
-    this.followRedirects = true
+    this.followRedirects = true;
     this.expression = "";
     this.search = "";
   }
