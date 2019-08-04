@@ -1,17 +1,12 @@
 {
   "files": {
-    "main.css": "/xray-poc-generation/static/css/main.8c858651.chunk.css",
+    "main.css": "/xray-poc-generation/static/css/main.b0b67545.chunk.css",
     "main.js": "/xray-poc-generation/static/js/main.592495d7.chunk.js",
-    "main.js.map": "/xray-poc-generation/static/js/main.592495d7.chunk.js.map",
     "runtime~main.js": "/xray-poc-generation/static/js/runtime~main.5dfdead9.js",
-    "runtime~main.js.map": "/xray-poc-generation/static/js/runtime~main.5dfdead9.js.map",
-    "static/css/2.52efe640.chunk.css": "/xray-poc-generation/static/css/2.52efe640.chunk.css",
+    "static/css/2.dffd680b.chunk.css": "/xray-poc-generation/static/css/2.dffd680b.chunk.css",
     "static/js/2.ad5b7530.chunk.js": "/xray-poc-generation/static/js/2.ad5b7530.chunk.js",
-    "static/js/2.ad5b7530.chunk.js.map": "/xray-poc-generation/static/js/2.ad5b7530.chunk.js.map",
     "index.html": "/xray-poc-generation/index.html",
-    "precache-manifest.9eae32d28f36f5cbce6ca8b7f263eaaf.js": "/xray-poc-generation/precache-manifest.9eae32d28f36f5cbce6ca8b7f263eaaf.js",
-    "service-worker.js": "/xray-poc-generation/service-worker.js",
-    "static/css/2.52efe640.chunk.css.map": "/xray-poc-generation/static/css/2.52efe640.chunk.css.map",
-    "static/css/main.8c858651.chunk.css.map": "/xray-poc-generation/static/css/main.8c858651.chunk.css.map"
+    "precache-manifest.af798e086c23b831b826c5921147c315.js": "/xray-poc-generation/precache-manifest.af798e086c23b831b826c5921147c315.js",
+    "service-worker.js": "/xray-poc-generation/service-worker.js"
   }
 }

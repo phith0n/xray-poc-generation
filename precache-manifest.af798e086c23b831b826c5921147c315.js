@@ -1,22 +1,22 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a457f1327cd5ce4549755e3632ca348d",
+    "revision": "d84f28cc1927cecf1afba48b9c5efc9c",
     "url": "/xray-poc-generation/index.html"
   },
   {
-    "revision": "f998a033bc9fee2cbc66",
-    "url": "/xray-poc-generation/static/css/2.52efe640.chunk.css"
+    "revision": "a188e7c8271f79bc2653",
+    "url": "/xray-poc-generation/static/css/2.dffd680b.chunk.css"
   },
   {
-    "revision": "1ee31d7a0f5cea110a3d",
-    "url": "/xray-poc-generation/static/css/main.8c858651.chunk.css"
+    "revision": "ecb8e661316e0956a01d",
+    "url": "/xray-poc-generation/static/css/main.b0b67545.chunk.css"
   },
   {
-    "revision": "f998a033bc9fee2cbc66",
+    "revision": "a188e7c8271f79bc2653",
     "url": "/xray-poc-generation/static/js/2.ad5b7530.chunk.js"
   },
   {
-    "revision": "1ee31d7a0f5cea110a3d",
+    "revision": "ecb8e661316e0956a01d",
     "url": "/xray-poc-generation/static/js/main.592495d7.chunk.js"
   },
   {
