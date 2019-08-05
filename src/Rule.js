@@ -30,17 +30,17 @@ export default class RuleComponent extends React.Component {
     if (name === "path") {
       let pathHelp;
       if (!value.startsWith("/")) {
-        pathHelp = update(this.state.pathHelp, {$set: {status: "error", help: "path需要以/开头"}});
+        pathHelp = {status: "error", help: "path需要以/开头"};
       } else {
-        pathHelp = update(this.state.pathHelp, {$set: {status: "success", help: ""}});
+        pathHelp = {status: "success", help: ""};
       }
 
       this.setState({pathHelp});
     } else if (name === "headers") {
-      let headersHelp = update(this.state.headersHelp, {$set: {status: "success", help: ""}});
+      let headersHelp = {status: "success", help: ""};
       for (let header of value) {
         if (!header.key) {
-          headersHelp = update(this.state.headersHelp, {$set: {status: "error", help: "HTTP头Key不能为空"}});
+          headersHelp = {status: "error", help: "HTTP头Key不能为空"};
         }
       }
 
