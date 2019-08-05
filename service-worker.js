@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/xray-poc-generation/precache-manifest.af798e086c23b831b826c5921147c315.js"
+  "/xray-poc-generation/precache-manifest.43a5a9cd9e76bf5de645f12c55385055.js"
 );
 
 self.addEventListener('message', (event) => {
