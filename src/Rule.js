@@ -126,7 +126,7 @@ export default class RuleComponent extends React.Component {
           <Input.TextArea autosize={{minRows: 2}} name="body" value={this.props.rule.body} onChange={this.changeInputValue} />
         </Form.Item>
         <Form.Item label="允许跳转" className="rule-item">
-          <Switch checked={this.props.rule.followRedirects} name="allowRedirects" onChange={value => this.changeInputValueByName("followRedirects", value)} />
+          <Switch checked={this.props.rule.follow_redirects} name="follow_redirects" onChange={value => this.changeInputValueByName("follow_redirects", value)} />
         </Form.Item>
         <Form.Item label="CEL表达式" className="rule-item">
           <Input placeholder="status==200" type="text" value={this.props.rule.expression} name="expression" onChange={this.changeInputValue} />
