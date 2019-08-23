@@ -91,6 +91,8 @@ export default class App extends React.Component {
       if (!rule.search.length) {
         delete rule.search;
       }
+
+      rule.expression = `${rule.expression}\n`
     }
 
     const poc = yaml.safeDump(data);
