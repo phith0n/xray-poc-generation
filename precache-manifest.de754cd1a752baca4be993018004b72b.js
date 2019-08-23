@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c18c1d66c69547e62b67efc79aa85c39",
+    "revision": "ca3326db24f9eda8930a4d8969b0770a",
     "url": "/xray-poc-generation/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/xray-poc-generation/static/css/2.dffd680b.chunk.css"
   },
   {
-    "revision": "5d3dbac6e14d91568175",
+    "revision": "ee974560623a1dcc5ec2",
     "url": "/xray-poc-generation/static/css/main.b0b67545.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/xray-poc-generation/static/js/2.1ec70cdb.chunk.js"
   },
   {
-    "revision": "5d3dbac6e14d91568175",
-    "url": "/xray-poc-generation/static/js/main.163bc4cb.chunk.js"
+    "revision": "ee974560623a1dcc5ec2",
+    "url": "/xray-poc-generation/static/js/main.33acfb80.chunk.js"
   },
   {
     "revision": "2ff899fdd4a0f048c82c",
